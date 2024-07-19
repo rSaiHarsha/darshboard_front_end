@@ -4,7 +4,35 @@ import { Link } from 'react-router-dom';
 import "../assets/css/UserList.css"
 
 const UserList = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      name: 'John Doe',
+      category: 'Tech Enthusiast',
+      bio: 'Loves coding and sharing knowledge.',
+      followers: 1500,
+      following: 300,
+      posts: 45,
+    },
+    {
+      id: 2,
+      name: 'Jane Smith',
+      category: 'Travel Blogger',
+      bio: 'Exploring the world one step at a time.',
+      followers: 2300,
+      following: 500,
+      posts: 80,
+    },
+    {
+      id: 3,
+      name: 'Emily Johnson',
+      category: 'Food Critic',
+      bio: 'Tasting and reviewing the best cuisines.',
+      followers: 3200,
+      following: 400,
+      posts: 100,
+    }
+  ]);
   const darkMode = false;
 
   useEffect(() => {
@@ -12,8 +40,6 @@ const UserList = () => {
       .then(response => setUsers(response.data))
       .catch(error => console.error('There was an error fetching the users!', error));
   }, []);
-
-
 
   const handleDelete = (userId) => {
     axios.delete(`/api/users/${userId}`)
@@ -68,12 +94,11 @@ const UserList = () => {
               <Link to={`/user/${user.id}`} className={`text-decoration-none text-right`}>
                 <p className='text-lg-right'>View More</p>
               </Link>
-            
             </div>
           </div>
         ))}
       </div>
-   </div>
+    </div>
   );
 };
 
